@@ -1,1 +1,1 @@
-console.log("working!");
+!async function(o,t){try{const o=await fetch("https://api.weatherapi.com/v1/current.json?key=732d76b905324f7288a105918242803&q=Tashkent"),t=await o.json();console.log(t),console.log(t.current.temp_c,t.location.name,t.location.country)}catch(o){console.error("Error!:",o)}}();
