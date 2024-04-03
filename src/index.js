@@ -9,7 +9,7 @@ searchButton.addEventListener("click", () => {
         .then(data => {
             console.log(extractInfo(data));
         })
-
+    inputCityName.value = "";
 })
 
 
