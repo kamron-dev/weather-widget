@@ -1,3 +1,14 @@
 body {
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+#card {
+    border: 2px solid red;
+    width: calc(53.98mm * 2);
+    height: calc(85.6mm * 2);
+    display: grid;
+
 }
