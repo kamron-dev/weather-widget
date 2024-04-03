@@ -17,7 +17,7 @@ searchButton.addEventListener("click", () => {
         .then(data => {
             console.log(data);
             data = extractInfo(data);
-            cityName.textContent = data.location.name;
+            cityName.textContent = `${data.location.name},${data.location.country}`;
             temperature.textContent = data.temp_c + "\u00B0C";
             description.textContent = data.condition.text;
             icon.src = data.condition.icon;
@@ -42,6 +42,4 @@ function extractInfo(data) {
 };
 
 
-// let answer = fetchWeather(myAPIkey, "Tashkent");
-// console.log(answer) 
 
