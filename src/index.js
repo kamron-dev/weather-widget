@@ -1,3 +1,4 @@
+import "./style.css";
 import { fetchWeather } from "./api";
 
 const inputCityName = document.querySelector("#cityName");
