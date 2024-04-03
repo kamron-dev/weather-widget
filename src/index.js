@@ -3,9 +3,12 @@ import { fetchWeather } from "./api";
 
 const inputCityName = document.querySelector("#cityName");
 const searchButton = document.querySelector("#citySubmit");
+const weatherCard = document.querySelector("#card");
+
 const cityName = document.querySelector("#cityH2");
 const temperature = document.querySelector("#temp_C");
 const description = document.querySelector("#desc");
+
 const myAPIkey = "732d76b905324f7288a105918242803";
 
 searchButton.addEventListener("click", () => {
