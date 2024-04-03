@@ -6,6 +6,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+
+    font-family: "Reddit Mono", monospace;
+    font-weight: 200;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 #card {
     border: 2px solid red;

@@ -3,12 +3,21 @@ import { fetchWeather } from "./api";
 
 const inputCityName = document.querySelector("#cityName");
 const searchButton = document.querySelector("#citySubmit");
+const cityName = document.querySelector("#cityH2");
+const temperature = document.querySelector("#temp_C");
+const description = document.querySelector("#desc");
 const myAPIkey = "732d76b905324f7288a105918242803";
 
 searchButton.addEventListener("click", () => {
     fetchWeather(myAPIkey, inputCityName.value)
         .then(data => {
-            console.log(extractInfo(data));
+            data = extractInfo(data);
+            cityName.textContent = data.location.name;
+            temperature.textContent = data.temp_c + "\u00B0C";
+            description.textContent = data.condition.text;
+            console.log(data)
+            
+            
         })
     inputCityName.value = "";
 })
@@ -29,5 +38,5 @@ function extractInfo(data) {
 
 
 // let answer = fetchWeather(myAPIkey, "Tashkent");
-// console.log(answer)
+// console.log(answer) 
 
