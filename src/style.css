@@ -26,10 +26,16 @@ body {
     border: 2px solid green;
     border-radius: inherit;
     display: flex;
-    justify-content: center;
+    /* justify-content: space-around; */
     align-items: center;
     flex-direction: column;
 }
+
+#cardText > * {
+    margin: 5px;
+    font-size: 2rem;
+}
+
 
 #search {
     display: flex;

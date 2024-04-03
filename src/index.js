@@ -15,7 +15,7 @@ searchButton.addEventListener("click", () => {
             cityName.textContent = data.location.name;
             temperature.textContent = data.temp_c + "\u00B0C";
             description.textContent = data.condition.text;
-            console.log(data)
+            // console.log(data)
             
             
         })
