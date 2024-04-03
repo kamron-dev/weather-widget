@@ -4,11 +4,14 @@ const inputCityName = document.querySelector("#cityName");
 const searchButton = document.querySelector("#citySubmit");
 const myAPIkey = "732d76b905324f7288a105918242803";
 
+searchButton.addEventListener("click", () => {
+    fetchWeather(myAPIkey, inputCityName.value)
+        .then(data => {
+            console.log(extractInfo(data));
+        })
 
-fetchWeather(myAPIkey, "Tashkent")
-    .then(data => {
-        console.log(extractInfo(data));
-    })
+})
+
 
 function extractInfo(data) {
     const { name, country } = data.location;
