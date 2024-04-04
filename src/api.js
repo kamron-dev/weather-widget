@@ -1,14 +1,14 @@
-export async function fetchWeather(apiKey, city) {
-    try {
-        const responce = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
-        const data = await responce.json();
-        return data;
-    } catch (error) {
-        console.error("Error:", error);
-        return null;
-    };
+// export async function fetchWeather(apiKey, city) {
+//     try {
+//         const responce = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
+//         const data = await responce.json();
+//         return data;
+//     } catch (error) {
+//         console.error("Error:", error);
+//         return null;
+//     };
     
-};
+// };
 
 export async function fetchGIF(word = "cat", container) {
     
@@ -22,8 +22,8 @@ export async function fetchGIF(word = "cat", container) {
 
 };
 
-export async function getForeCast(city) {
-    const sevenDayForecastURL = `https://api.weatherapi.com/v1/forecast.json?key=732d76b905324f7288a105918242803&q=${city}&days=7&aqi=no&alerts=no`;
+export async function getForeCast(APIkey, city) {
+    const sevenDayForecastURL = `https://api.weatherapi.com/v1/forecast.json?key=${APIkey}&q=${city}&days=7&aqi=no&alerts=no`;
     
     try {
         const response = await fetch(sevenDayForecastURL);
