@@ -1,5 +1,6 @@
 import "./style.css";
 import { fetchWeather, fetchGIF } from "./api";
+import { saveCity } from "./localStorage";
 
 const inputCityName = document.querySelector("#cityName");
 const searchButton = document.querySelector("#citySubmit");
@@ -15,18 +16,27 @@ const myAPIkey = "732d76b905324f7288a105918242803";
 searchButton.addEventListener("click", () => {
     fetchWeather(myAPIkey, inputCityName.value)
         .then(data => {
-            console.log(data);
-            data = extractInfo(data);
-            cityName.textContent = `${data.location.name},${data.location.country}`;
-            temperature.textContent = data.temp_c + "\u00B0C";
-            description.textContent = data.condition.text;
-            icon.src = data.condition.icon;
-            fetchGIF(data.condition.text, weatherCard);
-            
+            showWeather(data);
         })
+    saveCity(inputCityName.value);
     inputCityName.value = "";
-})
+});
 
+(function pageWorkLocalStorage() {
+    if (localStorage.length) fetchWeather(myAPIkey, localStorage.currentCity).then(data => {
+        showWeather(data);
+    })
+})();
+
+function showWeather(data) {
+    console.log(data);
+    data = extractInfo(data);
+    cityName.textContent = `${data.location.name},${data.location.country}`;
+    temperature.textContent = data.temp_c + "\u00B0C";
+    description.textContent = data.condition.text;
+    icon.src = data.condition.icon;
+    fetchGIF(data.condition.text, weatherCard);
+};
 
 function extractInfo(data) {
     const { name, country } = data.location;
