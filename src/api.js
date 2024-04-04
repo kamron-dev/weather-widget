@@ -2,8 +2,6 @@ export async function fetchWeather(apiKey, city) {
     try {
         const responce = await fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}`);
         const data = await responce.json();
-        // console.log(data)
-        // console.log(data.current.temp_c, data.location.name, data.location.country)
         return data;
     } catch (error) {
         console.error("Error:", error);
@@ -15,11 +13,26 @@ export async function fetchWeather(apiKey, city) {
 export async function fetchGIF(word = "cat", container) {
     
     try {
-        const responce = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=EWfxxdqIcrSsyR0l7DRB0foiZ7lGBAUr&s=${word}`, { mode: "cors" });
-        const responceData = await responce.json();
-        container.style.backgroundImage = `url(${responceData.data.images.original.url})`;
+        const response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=EWfxxdqIcrSsyR0l7DRB0foiZ7lGBAUr&s=${word}`, { mode: "cors" });
+        const responseData = await response.json();
+        container.style.backgroundImage = `url(${responseData.data.images.original.url})`;
     } catch (error) {
-        console.error("Network responce error:", error);
+        console.error("Network response error:", error);
     }
 
 };
+
+export async function getForeCast(city) {
+    const sevenDayForecastURL = `https://api.weatherapi.com/v1/forecast.json?key=732d76b905324f7288a105918242803&q=${city}&days=7&aqi=no&alerts=no`;
+    
+    try {
+        const response = await fetch(sevenDayForecastURL);
+        const data = await response.json();
+        console.log(data);  
+        return data
+    } catch (error) {
+        console.error("Error:", error);
+        return null;
+    }
+    
+}

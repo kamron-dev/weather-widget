@@ -1,5 +1,5 @@
 import "./style.css";
-import { fetchWeather, fetchGIF } from "./api";
+import { fetchWeather, fetchGIF, getSevenDayForecast } from "./api";
 import { saveCity } from "./localStorage";
 
 const inputCityName = document.querySelector("#cityName");
@@ -13,6 +13,12 @@ const icon = document.querySelector("#icon");
 
 const myAPIkey = "732d76b905324f7288a105918242803";
 
+(function pageWorkLocalStorage() {
+    if (localStorage.length) fetchWeather(myAPIkey, localStorage.currentCity).then(data => {
+        showWeather(data);
+    })
+})();
+
 searchButton.addEventListener("click", () => {
     fetchWeather(myAPIkey, inputCityName.value)
         .then(data => {
@@ -22,11 +28,7 @@ searchButton.addEventListener("click", () => {
     inputCityName.value = "";
 });
 
-(function pageWorkLocalStorage() {
-    if (localStorage.length) fetchWeather(myAPIkey, localStorage.currentCity).then(data => {
-        showWeather(data);
-    })
-})();
+getSevenDayForecast("Samarkand");
 
 function showWeather(data) {
     console.log(data);
