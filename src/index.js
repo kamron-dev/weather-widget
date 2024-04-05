@@ -19,7 +19,7 @@ const myAPIkey = "732d76b905324f7288a105918242803";
 (function pageWorkLocalStorage() {
     if (localStorage.length) getForeCast(myAPIkey, localStorage.currentCity).then(data => {
         showWeather(data);
-        
+        daysDiv.innerHTML = "";
         showForecast(data);
         
     })
@@ -31,6 +31,8 @@ searchButton.addEventListener("click", () => {
         getForeCast(myAPIkey, inputCityName.value)
                 .then(data => {
                     showWeather(data);
+                    daysDiv.innerHTML = "";
+                    showForecast(data);
                 })
             saveCity(inputCityName.value);
             inputCityName.value = "";
