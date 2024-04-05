@@ -15,9 +15,10 @@ const icon = document.querySelector("#icon");
 const myAPIkey = "732d76b905324f7288a105918242803";
 
 (function pageWorkLocalStorage() {
-    if (localStorage.length > 0) getForeCast(myAPIkey, localStorage.currentCity).then(data => {
+    if (localStorage.length) getForeCast(myAPIkey, localStorage.currentCity).then(data => {
         showWeather(data);
-        //showForecast(data);
+        
+        showForecast(data);
         
     })
 })();
@@ -48,16 +49,17 @@ function showWeather(data) {
     fetchGIF(data.condition.text, weatherCard);
 };
 
-// function showForecast(data) {
-//     // data = extractSevenDayForecast(data);
-//     const formattedDates = data.map(object => {
-//         if (object.date) {
-//             object.date = parseAndFormatDate(object.date);
-//         }
-//     });
-//     console.log(formattedDates);
+function showForecast(data) {
+    data = extractSevenDayForecast(data);
+    const formattedDates = data.map(object => {
+        if (object.date) {
+            object.date = parseAndFormatDate(object.date);
+            return object.date;
+        }
+    });
+    console.log(formattedDates);
     
-// };
+};
 
 function extractTodayWeather(data) {
     const { name, country } = data.location;
@@ -72,10 +74,10 @@ function extractTodayWeather(data) {
     }
 };
 
-// function extractSevenDayForecast(data) {
-//     const extractedData = data.forecast.forecastday.map(({ date, day }) => ({ date, day }));
-//     console.log(extractedData);
-//     // date(yyyy-MM-dd) and day object
-//     return extractedData;
-// }
+function extractSevenDayForecast(data) {
+    const extractedData = data.forecast.forecastday.map(({ date, day }) => ({ date, day }));
+    console.log(extractedData);
+    // date(yyyy-MM-dd) and day object
+    return extractedData;
+}
 
