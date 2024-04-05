@@ -61,7 +61,10 @@ body {
     width: 80%;
     height: 80%;
     grid-row: 2;
-    
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     /* glass look */
     
     background: var(--glass-color);
@@ -69,4 +72,18 @@ body {
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(4px);
+}
+
+.day-forecast {
+    font-size: 13px;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.day-forecast>img {
+    margin-right: 5px;
+    width: 2rem;
+    height: 2rem;
 }

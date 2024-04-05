@@ -59,11 +59,30 @@ function showForecast(data) {
             return object.date;
         }
     });
-    formattedDates.forEach(day => {
+    // formattedDates.forEach((day, index) => {
+    //     // const dayName = document.createElement("p");
+    //     // dayName.classList.add("day-forecast");
+    //     // if (index === 0) day = "Today";
+    //     // dayName.textContent = day;
+    //     // daysDiv.appendChild(dayName);
+
+    // });
+    
+    data.forEach((day, index) => {
         const dayName = document.createElement("p");
-        dayName.textContent = day;
+        dayName.classList.add("day-forecast");
+        if (index === 0) day.date = "Today";
+        dayName.textContent = day.date;
         daysDiv.appendChild(dayName);
-    })
+
+        const icon = document.createElement("img");
+        icon.src = day.day.condition.icon;
+        dayName.appendChild(icon);
+
+        const temps = document.createElement("p");
+        temps.textContent = `High ${day.day.maxtemp_c}\u00B0C - ${day.day.mintemp_c}\u00B0C Low`;
+        dayName.appendChild(temps);
+    });
     
 };
 
