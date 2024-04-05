@@ -1,6 +1,7 @@
 import "./style.css";
 import { fetchGIF, getForeCast } from "./api";
 import { saveCity } from "./localStorage";
+import { parseAndFormatDate } from "./dates";
 
 const inputCityName = document.querySelector("#cityName");
 const searchButton = document.querySelector("#citySubmit");
