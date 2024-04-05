@@ -15,24 +15,20 @@ const icon = document.querySelector("#icon");
 const myAPIkey = "732d76b905324f7288a105918242803";
 
 (function pageWorkLocalStorage() {
-    if (localStorage.length > 0) getForeCast(myAPIkey, localStorage.currentCity).then(data => {
+    if (localStorage.length) getForeCast(myAPIkey, localStorage.currentCity).then(data => {
         showWeather(data);
-        showForecast(data);
-        
+        extractSevenDayForecast(data);
     })
 })();
 
-// searchButton.addEventListener("click", () => {
-//     getForeCast(myAPIkey, inputCityName.value)
-//             .then(data => {
-//                 showWeather(data);
-//             })
-//         saveCity(inputCityName.value);
-//         inputCityName.value = "";
-// });
 searchButton.addEventListener("click", () => {
-    console.log(inputCityName.length);
-})
+    getForeCast(myAPIkey, inputCityName.value)
+        .then(data => {
+            showWeather(data);
+        })
+    saveCity(inputCityName.value);
+    inputCityName.value = "";
+});
 
 
 
@@ -43,17 +39,6 @@ function showWeather(data) {
     description.textContent = data.condition.text;
     icon.src = data.condition.icon;
     fetchGIF(data.condition.text, weatherCard);
-};
-
-function showForecast(data) {
-    // data = extractSevenDayForecast(data);
-    const formattedDates = data.map(object => {
-        if (object.date) {
-            object.date = parseAndFormatDate(object.date);
-        }
-    });
-    console.log(formattedDates);
-    
 };
 
 function extractTodayWeather(data) {
