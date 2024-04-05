@@ -12,6 +12,8 @@ const temperature = document.querySelector("#temp_C");
 const description = document.querySelector("#desc");
 const icon = document.querySelector("#icon");
 
+const daysDiv = document.querySelector("#days");
+
 const myAPIkey = "732d76b905324f7288a105918242803";
 
 (function pageWorkLocalStorage() {
@@ -57,7 +59,11 @@ function showForecast(data) {
             return object.date;
         }
     });
-    console.log(formattedDates);
+    formattedDates.forEach(day => {
+        const dayName = document.createElement("p");
+        dayName.textContent = day;
+        daysDiv.appendChild(dayName);
+    })
     
 };
 
