@@ -1,5 +1,5 @@
 import "./style.css";
-import { fetchWeather, fetchGIF, getForeCast } from "./api";
+import { fetchGIF, getForeCast } from "./api";
 import { saveCity } from "./localStorage";
 
 const inputCityName = document.querySelector("#cityName");
@@ -16,6 +16,7 @@ const myAPIkey = "732d76b905324f7288a105918242803";
 (function pageWorkLocalStorage() {
     if (localStorage.length) getForeCast(myAPIkey, localStorage.currentCity).then(data => {
         showWeather(data);
+        extractSevenDayForecast(data);
     })
 })();
 
@@ -28,11 +29,10 @@ searchButton.addEventListener("click", () => {
     inputCityName.value = "";
 });
 
-getForeCast("Samarkand");
+
 
 function showWeather(data) {
-    console.log(data);
-    data = extractInfo(data);
+    data = extractTodayWeather(data);
     cityName.textContent = `${data.location.name},${data.location.country}`;
     temperature.textContent = data.temp_c + "\u00B0C";
     description.textContent = data.condition.text;
@@ -40,7 +40,7 @@ function showWeather(data) {
     fetchGIF(data.condition.text, weatherCard);
 };
 
-function extractInfo(data) {
+function extractTodayWeather(data) {
     const { name, country } = data.location;
     const { temp_c, humidity, wind_kph } = data.current;
     const { condition } = data.current;
@@ -53,5 +53,10 @@ function extractInfo(data) {
     }
 };
 
-
+function extractSevenDayForecast(data) {
+    const extractedData = data.forecast.forecastday.map(({ date, day }) => ({ date, day }));
+    console.log(extractedData);
+    // date(yyyy-MM-dd) and day object
+    return extractedData;
+}
 
